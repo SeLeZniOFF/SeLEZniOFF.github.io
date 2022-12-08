@@ -3,47 +3,52 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   </header>
 <body>
   <h2>Лабораторная работа 1</h2>
   <h3>Task 1</h3>
   <p>task1_client</p>
    <code>
-     import socket
+     import socket</br>
 
 
-HOST, PORT = "localhost", 9999
+HOST, PORT = "localhost", 9999</br>
 
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-    sock.connect((HOST, PORT))
-    sock.sendall(bytes("Hello, server" + "\n", "utf-8"))
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:</br>
+    sock.connect((HOST, PORT))</br>
+    sock.sendall(bytes("Hello, server" + "\n", "utf-8"))</br>
 
-    received = str(sock.recv(1024), "utf-8")
-    print(f"Received data: {received}")
+    received = str(sock.recv(1024), "utf-8")</br>
+    print(f"Received data: {received}")</br>
   </code>
   
+  
+  
+  
+  
    <p>task1_server</p>
+  
   <code>
-  import socketserver
+    import socketserver</br>
 
 
-class MyTCPHandler(socketserver.BaseRequestHandler):
+class MyTCPHandler(socketserver.BaseRequestHandler):</br>
 
-    def handle(self):
-        self.data = self.request.recv(1024).strip()
-        print(f"Received data: {self.data.decode()}")
-        if self.data.decode() == "Hello, server":
-            self.request.sendall(b"Hello, client")
-        else:
-            self.request.sendall(b"Try again")
+    def handle(self):</br>
+        self.data = self.request.recv(1024).strip()</br>
+        print(f"Received data: {self.data.decode()}")</br>
+        if self.data.decode() == "Hello, server":</br>
+            self.request.sendall(b"Hello, client")</br>
+        else:</br>
+            self.request.sendall(b"Try again")</br>
 
 
-if __name__ == "__main__":
-    HOST, PORT = "localhost", 9999
+if __name__ == "__main__":</br>
+    HOST, PORT = "localhost", 9999</br>
 
-    with socketserver.TCPServer((HOST, PORT), MyTCPHandler) as server:
-        server.serve_forever()
+    with socketserver.TCPServer((HOST, PORT), MyTCPHandler) as server:</br>
+        server.serve_forever()</br>
 
   </code>
   
